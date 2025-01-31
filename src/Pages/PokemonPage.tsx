@@ -16,10 +16,10 @@ export const PokemonPage = () => {
 
   return (
     <div>
-      <ul className="grid grid-cols-3 ">
+      <ul className="grid grid-cols-3 gap-1">
         {data?.map((pokemon) => (
           <li className="m-auto" key={pokemon.id}>
-            <div className="border flex flex-col items-center w-40 h-40 gap-1">
+            <div className="bg-slate-200 border flex flex-col items-center w-40 h-40 gap-1">
               <img
                 className="h-1/2 w-1/2"
                 src={pokemon.sprites.front_default}
