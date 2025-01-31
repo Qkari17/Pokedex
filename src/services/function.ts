@@ -34,3 +34,11 @@ export const fetchPokemons = async (): Promise<PokemonDetails[]> => {
 export const capitalizeFirstLetter = (name: string) => {
   return name.charAt(0).toUpperCase() + name.slice(1);
 };
+
+export const fetchPokemonById = async (id: string) => {
+  const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
+  if (!res.ok) {
+      throw new Error("Błąd pobierania danych");
+  }
+  return res.json();
+};

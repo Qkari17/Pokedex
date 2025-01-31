@@ -4,7 +4,7 @@ import {
   fetchPokemons,
   PokemonDetails,
 } from "../services/function";
-
+import { Link } from "react-router";
 export const PokemonPage = () => {
   const { data, error, isLoading } = useQuery<PokemonDetails[]>({
     queryKey: ["pokemons"],
@@ -19,7 +19,8 @@ export const PokemonPage = () => {
       <ul className="grid grid-cols-3 gap-1">
         {data?.map((pokemon) => (
           <li className="m-auto" key={pokemon.id}>
-            <div className="bg-slate-200 border flex flex-col items-center w-40 h-40 gap-1">
+            <Link to={`${pokemon.id}`}>
+            <div className="bg-slate-200 border hover:bg-slate-300 flex flex-col items-center w-40 h-40 gap-1">
               <img
                 className="h-1/2 w-1/2"
                 src={pokemon.sprites.front_default}
@@ -37,7 +38,7 @@ export const PokemonPage = () => {
                   </div>
                 ))}
               </div>
-            </div>
+            </div></Link>
           </li>
         ))}
       </ul>
