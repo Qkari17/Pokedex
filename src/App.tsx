@@ -1,13 +1,18 @@
-import "./App.css";
-import { Button } from "./components/Button";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+
+import { PokedexBox } from "./components/Productt/PokedexBox";
+
+
+// Tworzymy instancję QueryClient
+const queryClient = new QueryClient();
 
 function App() {
   return (
-    <>
-      <link href="/dist/styles.css" rel="stylesheet"></link>
-      <h1 className=" text-red-400 text-3xl font-bold underline ">Hello world!</h1>
-      <Button></Button>
-    </>
+    <QueryClientProvider client={queryClient}>
+      <PokedexBox/>
+      <ReactQueryDevtools initialIsOpen={false} />
+    </QueryClientProvider>
   );
 }
 
