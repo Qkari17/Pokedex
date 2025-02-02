@@ -28,7 +28,7 @@ export const PokemonPage = () => {
             <div
               onClick={() => toggleSelectedPokemon(pokemon.id)}
               className={`border flex flex-col items-center w-40 h-40 gap-1 p-2 rounded-lg shadow-md cursor-pointer
-                ${selectedPokemon === pokemon.id ? "bg-yellow-300" : "bg-slate-200 hover:bg-slate-300"}`}
+                ${selectedPokemon === pokemon.id ? "bg-yellow-300 border-4" : "bg-slate-200 hover:bg-slate-300"}`}
             >
               <img
                 className="h-1/2 w-1/2"

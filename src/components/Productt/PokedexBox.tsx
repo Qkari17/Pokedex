@@ -18,12 +18,12 @@ export const PokedexBox = () => {
   };
 
   return (
-    <div>
-      <div className=" bg-orange-700 flex border-4 flex-col m-auto pt-10   w-[40rem] mt-5 rounded-2xl">
+    <div className="flex justify-center ">
+      <div className=" bg-orange-700 flex border-4 flex-col pt-10   w-[40rem] mt-5 rounded-2xl">
         <div className="flex justify-center border-4 rounded-3xl h-[31rem] w-[31rem] m-auto overflow-y-scroll bg-white">
           <Outlet context={{ toggleSelectedPokemon, selectedPokemon }} />
         </div>
-      
+
         <div className="flex justify-end m-4 ">
           <div className=" flex h-56">
             <div className="flex flex-col items-center">
@@ -44,6 +44,13 @@ export const PokedexBox = () => {
             </div>
           </div>
         </div>
+      </div>
+      <div className="bg-orange-700 border-t-4 flex-col pt-10 w-[40rem] mt-5 rounded-2xl relative justify-end">
+      <div className="flex justify-center border-4 rounded-3xl h-[20.7rem] w-[31rem] m-auto overflow-y-scroll bg-white">
+          <Outlet context={{ toggleSelectedPokemon, selectedPokemon }} />
+        </div>
+        <div className="absolute bg-white w-full h-36 bottom-0 z-10 "></div>
+        <div className="absolute bg-white w-full h-56 bottom-10 border-4  rounded-full"></div>
       </div>
     </div>
   );

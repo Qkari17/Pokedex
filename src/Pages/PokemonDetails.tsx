@@ -1,4 +1,4 @@
-import { Link, useParams } from "react-router";
+import {  useParams } from "react-router";
 import { useQuery } from "@tanstack/react-query";
 import {
   capitalizeFirstLetter,
@@ -6,7 +6,7 @@ import {
   PokemonDetails,
   typeColors,
 } from "../services/function";
-import { routes } from "../routes";
+
 
 export const PokemonDetailsPage = () => {
   const { id } = useParams<{ id: string }>(); // Get the Pokémon ID from URL
@@ -54,18 +54,12 @@ export const PokemonDetailsPage = () => {
                 </div>
                 <div
                   className="bg-red-400 h-3"
-                  style={{ width: `${t.base_stat}px` }}
+                  style={{ width: `${Number(t.base_stat) / 2}px` }} 
                 ></div>
               </div>
             ))}
           </div>
-          <Link
-            className="text-blue-500 text-4xl mt-5"
-            to={routes.POKEMON_PAGE.path}
-          >
-            HOME
-          </Link>
-        </div>
+            </div>
       </>
     </>
   );
