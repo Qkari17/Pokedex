@@ -44,7 +44,8 @@ export const fetchPokemons = async (): Promise<PokemonDetails[]> => {
       return {
         id: pokemonData.id,
         name: pokemonData.name,
-        types: pokemonData.types,
+        types: pokemonData.
+        types,
         sprites: pokemonData.sprites,
         stats: pokemonData.stats
       };
@@ -52,6 +53,27 @@ export const fetchPokemons = async (): Promise<PokemonDetails[]> => {
   );
 
   return detailedPokemons;
+};
+
+export const fetchFavorite = async (): Promise<PokemonDetails[]> => {
+  const savedIds = JSON.parse(localStorage.getItem("savedPokemonIds") || "[]");
+
+  const favoritePokemons: PokemonDetails[] = await Promise.all(
+    savedIds.map(async (id: number) => {
+      const pokemonResponse = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
+      if (!pokemonResponse.ok) throw new Error("Błąd w pobieraniu danych");
+      const pokemonData: PokemonDetails = await pokemonResponse.json();
+      return {
+        id: pokemonData.id,
+        name: pokemonData.name,
+        types: pokemonData.types,
+        sprites: pokemonData.sprites,
+        stats: pokemonData.stats,
+      };
+    })
+  );
+
+  return favoritePokemons;
 };
 
 export const capitalizeFirstLetter = (name: string) => {

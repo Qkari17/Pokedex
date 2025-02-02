@@ -8,8 +8,9 @@ export const routes = {
     path: "/",
   },
   POKEMON_DETAILS: {
-    path: "/:id",
+    path: "//:id",
   },
+
 };
 
 export const router = createBrowserRouter([
@@ -25,6 +26,6 @@ export const router = createBrowserRouter([
         path: routes.POKEMON_DETAILS.path,
         element: <PokemonDetailsPage />,
       },
-    ],
+     ],
   },
 ]);
