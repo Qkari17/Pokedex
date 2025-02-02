@@ -1,6 +1,7 @@
 import { createBrowserRouter } from "react-router";
 import { PokemonPage } from "./Pages/PokemonPage";
 import { PokemonDetailsPage } from "./Pages/PokemonDetails";
+import { PokedexBox } from "./components/Productt/PokedexBox";
 
 export const routes = {
   POKEMON_PAGE: {
@@ -13,11 +14,17 @@ export const routes = {
 
 export const router = createBrowserRouter([
   {
-    path: routes.POKEMON_PAGE.path,
-    element: <PokemonPage />,
-  },
-  {
-    path: routes.POKEMON_DETAILS.path,
-    element: <PokemonDetailsPage />,
+    path: "/",
+    element: <PokedexBox />, // 🔥 PokedexBox przechowuje stan `selectedPokemon`
+    children: [
+      {
+        path: routes.POKEMON_PAGE.path,
+        element: <PokemonPage />,
+      },
+      {
+        path: routes.POKEMON_DETAILS.path,
+        element: <PokemonDetailsPage />,
+      },
+    ],
   },
 ]);
