@@ -22,12 +22,20 @@ export const PokemonFavorite = ({ onRemovePokemon }: PokemonFavoriteProps) => {
     queryFn: fetchFavorite,
   });
 
-  if (isLoading) return <p>Ładowanie...</p>;
-  if (error)
-    return (
-      <p>Błąd: {error instanceof Error ? error.message : "Unknown error"}</p>
+  if (isLoading)
+    return (<div className="flex flex-col justify-center items-center gap-4"> <h1 className="font-bold dark:text-slate-200 text-6xl">Loading</h1>
+      <div className="flex flex-col justify-center items-center relative animate-spin ease-in-out duration-1000">
+        <div className="bg-red-600 border-6 w-60 h-30 rounded-t-full"></div>
+        <div className="bg-slate-200 border-6 w-60 h-30 rounded-b-full"></div>
+        <div className="absolute inset-0 flex justify-center items-center">
+          <div className=" transform bg-slate-200 border-6 w-15 h-15 rounded-full flex justify-center items-center">
+            <div className="w-8 h-8 border-4 rounded-full"></div>
+          </div>
+        </div>
+      </div></div>
     );
-  if (!pokemon || pokemon.length === 0) return <p>Nie znaleziono Pokémon.</p>;
+  if (error) return <p className="font-bold dark:text-slate-200 text-4xl">Error: {error.message}</p>;
+  if (!pokemon || pokemon.length === 0) return <div className="flex items-center"><p className="font-bold dark:text-slate-200 text-4xl">No Pokemon added</p></div>;
 
   return (
     <div>

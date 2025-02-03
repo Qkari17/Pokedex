@@ -66,7 +66,7 @@ export const PokedexBox = () => {
   return (
     <div className="flex justify-center flex-col lg:flex-row">
       <div className=" bg-orange-700 flex border-4 flex-col pt-10 w-[40rem] mt-5 rounded-2xl relative">
-        <div className="absolute top-4 right-6">
+        <div className="absolute top-3 right-4">
           <ThemeSwitcher></ThemeSwitcher>
         </div>
         <div className="flex justify-center border-4 rounded-3xl h-[31rem] w-[31rem] m-auto overflow-y-scroll bg-white relative dark:bg-stone-700">
@@ -163,10 +163,20 @@ export const PokedexBox = () => {
             <div className="h-[20.7rem] w-[30.6rem] bg-gray-800"></div>
           )}{" "}
           <div
-            className={`h-[20.7rem] w-[30.6rem] bg-orange-700 absolute transition -bottom-84 duration-1000 ease-in-out border-2 ${
+            className={`h-[20.7rem] w-[30.6rem] bg-orange-700 absolute transition -bottom-84 duration-1000 ease-in-out border-2 flex justify-center ${
               power === Power.ON ? "" : "-translate-y-84"
             }`}
-          ></div>
+          >
+            <div className="flex flex-col justify-center items-center relative">
+              <div className="bg-red-600 border-6 w-60 h-30 rounded-t-full"></div>
+              <div className="bg-slate-200 border-6 w-60 h-30 rounded-b-full"></div>
+              <div className="absolute inset-0 flex justify-center items-center">
+                <div className=" transform bg-slate-200 border-6 w-15 h-15 rounded-full flex justify-center items-center">
+                  <div className="w-8 h-8 border-4 rounded-full"></div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
         <div className="absolute bg-white w-full h-36 bottom-0 z-30 dark:bg-stone-700"></div>
         <div className="absolute bg-white w-full h-56 bottom-2 z-20 border-4  rounded-full dark:bg-stone-700"></div>
