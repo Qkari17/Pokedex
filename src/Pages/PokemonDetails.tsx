@@ -26,9 +26,8 @@ export const PokemonDetailsPage = () => {
 
   return (
     <>
-      <>
-        <div className="flex flex-col items-center gap-2">
-          <h1 className="text-2xl font-bold">
+             <div className="flex flex-col items-center gap-2 dark:bg-stone-500 w-full">
+          <h1 className="text-2xl font-bold dark:text-slate-200">
             {capitalizeFirstLetter(pokemon.name)} (#{pokemon.id})
           </h1>
           <img src={pokemon.sprites.front_default} alt={pokemon.name} />
@@ -37,7 +36,7 @@ export const PokemonDetailsPage = () => {
               const bgColor = typeColors[t.type.name] || "bg-gray-300"; 
               return (
                 <div
-                  className={`border rounded-3xl border-black py-1 px-3 text-white ${bgColor}`}
+                  className={`border rounded-3xl border-black py-1 px-3  ${bgColor}`}
                   key={index}
                 >
                   {capitalizeFirstLetter(t.type.name)}
@@ -45,22 +44,22 @@ export const PokemonDetailsPage = () => {
               );
             })}
           </div>{" "}
-          <h2 className="text-2xl">Base Stats</h2>
+          <h2 className="text-2xl dark:text-slate-200">Base Stats</h2>
           <div className="grid grid-cols-2 gap-6">
             {pokemon.stats.map((t, index) => (
               <div className="flex flex-col gap-2">
-                <div key={index}>
+                <div className="dark:text-slate-200" key={index}>
                   {capitalizeFirstLetter(t.stat.name)}: {t.base_stat}
                 </div>
                 <div
-                  className="bg-red-400 h-3"
+                  className="bg-red-400 dark:bg-green-400 h-3"
                   style={{ width: `${Number(t.base_stat) / 2}px` }} 
                 ></div>
               </div>
             ))}
           </div>
             </div>
-      </>
+      
     </>
   );
 };

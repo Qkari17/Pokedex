@@ -27,15 +27,15 @@ export const PokemonPage = () => {
           <li className="m-auto" key={pokemon.id}>
             <div
               onClick={() => toggleSelectedPokemon(pokemon.id)}
-              className={`border flex flex-col items-center w-40 h-40 gap-1 p-2 rounded-lg shadow-md cursor-pointer
-                ${selectedPokemon === pokemon.id ? "bg-yellow-300 border-4" : "bg-slate-200 hover:bg-slate-300"}`}
+              className={`border flex flex-col items-center w-40 h-40 gap-1 p-2 rounded-lg shadow-md cursor-pointer dark:bg-stone-500 dark:hover:bg-stone-600
+                ${selectedPokemon === pokemon.id ? "bg-yellow-300 dark:bg-yellow-800 border-4 " : "bg-slate-200 hover:bg-slate-300"}`}
             >
               <img
                 className="h-1/2 w-1/2"
                 src={pokemon.sprites.front_default}
                 alt={pokemon.name}
               />
-              <p>
+              <p className="dark:text-slate-200">
                 {pokemon.id}{" "}
                 <strong>{capitalizeFirstLetter(pokemon.name)}</strong>
               </p>
@@ -45,7 +45,7 @@ export const PokemonPage = () => {
                   const bgColor = typeColors[t.type.name] || "bg-gray-300";
                   return (
                     <div
-                      className={`border rounded-3xl border-black py-1 px-3 text-white ${bgColor}`}
+                      className={`border rounded-3xl border-black py-1 px-3  ${bgColor}`}
                       key={index}
                     >
                       {capitalizeFirstLetter(t.type.name)}
