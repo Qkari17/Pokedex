@@ -6,7 +6,10 @@ import {
 } from "../services/function";
 import { useQuery } from "@tanstack/react-query";
 
-export const PokemonFavorite = () => {
+interface PokemonFavoriteProps {
+  onRemovePokemon: (id: number) => void; // Dodaj prop do obsługi usuwania
+}
+
 export const PokemonFavorite = ({ onRemovePokemon }: PokemonFavoriteProps) => {
   const {
     data: pokemon,
