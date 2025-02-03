@@ -86,7 +86,7 @@ export const PokedexBox = () => {
         <div className="absolute top-3 right-4">
           <ThemeSwitcher></ThemeSwitcher>
         </div>
-        <div className="flex justify-center border-4 rounded-3xl h-[31rem] w-[31rem] m-auto overflow-y-scroll bg-white relative dark:bg-stone-700">
+        <div className="flex justify-center border-4 rounded-3xl h-[31rem] w-[31.3rem] m-auto overflow-y-scroll bg-white relative dark:bg-stone-700">
           {power === Power.ON ? (
             <Outlet context={{ toggleSelectedPokemon, selectedPokemon }} />
           ) : (
@@ -170,7 +170,7 @@ export const PokedexBox = () => {
         </div>
       </div>
       <div className="bg-orange-700 border-t-4 flex-col pt-10 w-[40rem] rounded-2xl relative justify-end h-[45rem] lg:mt-5 ">
-        <div className="flex justify-center border-4 rounded-3xl h-[20.7rem] w-[31rem] m-auto overflow-hidden bg-white relative dark:bg-stone-700">
+        <div className="flex justify-center border-4 rounded-3xl h-[20.7rem] w-[31.3rem] m-auto overflow-hidden bg-white relative dark:bg-stone-700">
           {power === Power.ON ? (
             <PokemonFavorite
               key={favoriteUpdated.toString()}
