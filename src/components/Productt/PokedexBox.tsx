@@ -62,7 +62,7 @@ export const PokedexBox = () => {
       savedIds.unshift(pokemonIdToSave);
       localStorage.setItem("savedPokemonIds", JSON.stringify(savedIds));
       setFavoriteUpdated((prev) => !prev);
-      alert("Pokemon ID saved successfully!");
+    
     } else {
       alert("Pokemon ID already saved!");
     }
