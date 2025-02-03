@@ -1,3 +1,4 @@
+import { Link } from "react-router";
 import {
   capitalizeFirstLetter,
   fetchFavorite,
@@ -5,6 +6,7 @@ import {
   typeColors,
 } from "../services/function";
 import { useQuery } from "@tanstack/react-query";
+import Glass from "../img/MagnifyGlass.svg"
 
 interface PokemonFavoriteProps {
   onRemovePokemon: (id: number) => void; // Dodaj prop do obsługi usuwania
@@ -34,14 +36,20 @@ export const PokemonFavorite = ({ onRemovePokemon }: PokemonFavoriteProps) => {
           <li className="m-auto" key={pokemon.id}>
             <div className="border flex flex-col items-center w-40 h-40 gap-1 p-2 rounded-lg shadow-md bg-slate-200 relative">
               <button
-                className="absolute w-10 h-10 bg-red-500 top-0 right-0"
+                className="absolute w-10 h-10 bg-red-500 hover:bg-red-600 top-0 right-0 rounded-bl-3xl"
                 onClick={() => onRemovePokemon(pokemon.id)}
               >
                 <div className="relative flex justify-center">
-                  <span className="absolute w-8 h-1 bg-black rotate-45 rounded-2xl"></span>
-                  <span className="absolute w-8 h-1 bg-black -rotate-45 rounded-2xl"></span>
+                  <span className="absolute w-8 h-1 bg-white rotate-45 rounded-2xl"></span>
+                  <span className="absolute w-8 h-1 bg-white -rotate-45 rounded-2xl"></span>
                 </div>
               </button>
+              <Link to={`/${pokemon.id}`}>
+                <button className="absolute w-10 h-10 bg-blue-500 hover:bg-blue-600 top-0 left-0 flex justify-center items-center rounded-br-3xl">
+                  {" "}
+                  <img src={Glass} alt="Magnifying glass" className="w-8 "></img>
+                </button>
+              </Link>
               <img
                 className="h-1/2 w-1/2"
                 src={pokemon.sprites.front_default}
