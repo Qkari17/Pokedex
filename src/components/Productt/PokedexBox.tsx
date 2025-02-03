@@ -57,6 +57,15 @@ export const PokedexBox = () => {
     }
   };
 
+  const handleRemovePokemon = (id: number) => {
+    const savedIds = JSON.parse(localStorage.getItem("savedPokemonIds") || "[]");
+    const updatedIds = savedIds.filter((savedId: string) => savedId !== id.toString());
+
+    localStorage.setItem("savedPokemonIds", JSON.stringify(updatedIds));
+    setFavoriteUpdated((prev) => !prev); // Wymuś renderowanie
+    alert("Pokemon removed from favorites!");
+  };
+
   return (
     <div className="flex justify-center ">
       <div className=" bg-orange-700 flex border-4 flex-col pt-10   w-[40rem] mt-5 rounded-2xl">
@@ -87,7 +96,7 @@ export const PokedexBox = () => {
       </div>
       <div className="bg-orange-700 border-t-4 flex-col pt-10 w-[40rem] mt-5 rounded-2xl relative justify-end">
       <div className="flex justify-center border-4 rounded-3xl h-[20.7rem] w-[31rem] m-auto overflow-y-scroll bg-white">
-          <PokemonFavorite key={favoriteUpdated.toString()}></PokemonFavorite>
+          <PokemonFavorite key={favoriteUpdated.toString()} onRemovePokemon={handleRemovePokemon}></PokemonFavorite>
         </div>
         <div className="absolute bg-white w-full h-36 bottom-0 z-10 "></div>
         <div className="absolute bg-white w-full h-56 bottom-10 border-4  rounded-full"></div>

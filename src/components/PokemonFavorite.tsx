@@ -7,6 +7,7 @@ import {
 import { useQuery } from "@tanstack/react-query";
 
 export const PokemonFavorite = () => {
+export const PokemonFavorite = ({ onRemovePokemon }: PokemonFavoriteProps) => {
   const {
     data: pokemon,
     error,
@@ -28,7 +29,16 @@ export const PokemonFavorite = () => {
       <ul className="grid grid-cols-3 gap-1">
         {pokemon.map((pokemon) => (
           <li className="m-auto" key={pokemon.id}>
-            <div className="border flex flex-col items-center w-40 h-40 gap-1 p-2 rounded-lg shadow-md bg-slate-200">
+            <div className="border flex flex-col items-center w-40 h-40 gap-1 p-2 rounded-lg shadow-md bg-slate-200 relative">
+              <button
+                className="absolute w-10 h-10 bg-red-500 top-0 right-0"
+                onClick={() => onRemovePokemon(pokemon.id)}
+              >
+                <div className="relative flex justify-center">
+                  <span className="absolute w-8 h-1 bg-black rotate-45 rounded-2xl"></span>
+                  <span className="absolute w-8 h-1 bg-black -rotate-45 rounded-2xl"></span>
+                </div>
+              </button>
               <img
                 className="h-1/2 w-1/2"
                 src={pokemon.sprites.front_default}
