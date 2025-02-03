@@ -84,21 +84,67 @@ export const PokedexBox = () => {
               <p className="text-black text-3xl font-bold ">Home</p>
               <button
                 onClick={handleNavigate}
-                className={` border-4 w-20 h-20 rounded-full ${
-                  selectedPokemon
-                    ? "bg-blue-500 hover:bg-blue-600"
-                    : "bg-gray-400 hover:bg-gray-500"
-                }`}
+                className={` border-4 w-20 h-20 rounded-full bg-yellow-500 flex justify-center items-center`}
                 disabled={power !== Power.ON}
-              ></button>
+              >
+                {selectedPokemon ? (<svg
+                  className={`w-15 rounded-full border-4 bg-amber-400 hover:bg-amber-600 duration-500 ease-in-out  ${
+                    power === Power.ON
+                      ? "stroke-green-500 bg-gray-700 hover:bg-gray-800 "
+                      : ""
+                  }`}
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M21 21L15.8033 15.8033M15.8033 15.8033C17.1605 14.4461 18 12.5711 18 10.5C18 6.35786 14.6421 3 10.5 3C6.35786 3 3 6.35786 3 10.5C3 14.6421 6.35786 18 10.5 18C12.5711 18 14.4461 17.1605 15.8033 15.8033Z"
+                    
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                
+                ) : (
+                  <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className={`w-15 rounded-full border-4 bg-amber-400 hover:bg-amber-600 duration-500 ease-in-out  ${
+                    power === Power.ON
+                      ? "fill-green-500 bg-gray-700 hover:bg-gray-800 "
+                      : ""
+                  }`}
+                  viewBox="0 -960 960 960"
+                >
+                  <path d="M240-200h120v-240h240v240h120v-360L480-740 240-560zm-80 80v-480l320-240 320 240v480H520v-240h-80v240zm320-350" />
+                </svg>
+                )}
+              </button>
             </div>
             <div className="flex flex-col items-center justify-end">
               <p className="text-black text-3xl font-bold ">Fav</p>
               <button
                 onClick={handleSavePokemonId}
-                className="bg-yellow-500 hover:bg-yellow-400 border-4 w-20 h-20 rounded-full"
+                className="bg-yellow-500  border-4 w-20 h-20 rounded-full flex justify-center items-center"
                 disabled={power !== Power.ON}
-              ></button>
+              >
+                <svg
+                  className={`w-15 rounded-full border-4 bg-amber-400 hover:bg-amber-600 duration-500 ease-in-out  ${
+                    power === Power.ON
+                      ? "stroke-green-500 bg-gray-700 hover:bg-gray-800 "
+                      : ""
+                  }`}
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                </svg>
+              </button>
             </div>
           </div>
         </div>
