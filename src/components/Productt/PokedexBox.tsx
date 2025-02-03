@@ -17,7 +17,7 @@ export const PokedexBox = () => {
 
   const handleNavigate = () => {
     if (selectedPokemon) {
-      navigate(`/${selectedPokemon}`);
+      navigate(`/pokemon/${selectedPokemon}`);
       setSelectedPokemon(null);
     } else {
       navigate("/");
@@ -26,28 +26,45 @@ export const PokedexBox = () => {
 
   const handleSavePokemonId = () => {
     let pokemonIdToSave: string | null = null;
-
-    pokemonIdToSave = selectedPokemon ? selectedPokemon.toString() : null;
-
-    if (pokemonIdToSave) {
-      const savedIds = JSON.parse(
-        localStorage.getItem("savedPokemonIds") || "[]"
-      );
-
-      if (savedIds.length >= 6) {
-        alert("Maximum 6 Pokémon can be add!");
-        return;
-      }
-
-      if (!savedIds.includes(pokemonIdToSave)) {
-        savedIds.unshift(pokemonIdToSave);
-        localStorage.setItem("savedPokemonIds", JSON.stringify(savedIds));
-        setFavoriteUpdated((prev) => !prev);
-      } else {
-        alert("Pokemon ID already saved!");
-      }
+  
+   
+    if (selectedPokemon) {
+      pokemonIdToSave = selectedPokemon.toString();
     } else {
-      alert("No Pokemon selected or ID found!");
+      
+      const pathParts = window.location.pathname.split('/');
+      if (pathParts[1] === 'pokemon' && pathParts[2]) {
+        pokemonIdToSave = pathParts[2]; 
+      }
+    }
+  
+    
+    if (!pokemonIdToSave) {
+      alert("No Pokemon selected or ID found in the URL!");
+      return;
+    }
+  
+    
+    if (isNaN(Number(pokemonIdToSave))) {
+      alert("Invalid Pokemon ID!");
+      return;
+    }
+  
+   
+    const savedIds = JSON.parse(localStorage.getItem("savedPokemonIds") || "[]");
+  
+    if (savedIds.length >= 6) {
+      alert("Maximum 6 Pokémon can be added!");
+      return;
+    }
+  
+    if (!savedIds.includes(pokemonIdToSave)) {
+      savedIds.unshift(pokemonIdToSave);
+      localStorage.setItem("savedPokemonIds", JSON.stringify(savedIds));
+      setFavoriteUpdated((prev) => !prev);
+      alert("Pokemon ID saved successfully!");
+    } else {
+      alert("Pokemon ID already saved!");
     }
   };
 
