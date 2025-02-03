@@ -69,7 +69,7 @@ export const PokedexBox = () => {
           {power === Power.ON ? (
             <Outlet context={{ toggleSelectedPokemon, selectedPokemon }} />
           ) : (
-            <div className="absolute h-[31rem] w-[30.5rem] bg-gray-800"></div>
+            <div className="h-[31rem] w-[30.5rem] bg-gray-800"></div>
           )}
         </div>
 
@@ -88,6 +88,7 @@ export const PokedexBox = () => {
                     ? "bg-blue-500 hover:bg-blue-600"
                     : "bg-gray-400 hover:bg-gray-500"
                 }`}
+                disabled={power !== Power.ON}
               ></button>
             </div>
             <div className="flex flex-col items-center justify-end">
@@ -101,15 +102,24 @@ export const PokedexBox = () => {
           </div>
         </div>
       </div>
-      <div className="bg-orange-700 border-t-4 flex-col pt-10 w-[40rem] rounded-2xl relative justify-end h-[45rem] lg:mt-5">
-        <div className="flex justify-center border-4 rounded-3xl h-[20.7rem] w-[31rem] m-auto overflow-y-scroll bg-white">
-          <PokemonFavorite
-            key={favoriteUpdated.toString()}
-            onRemovePokemon={handleRemovePokemon}
-          ></PokemonFavorite>
+      <div className="bg-orange-700 border-t-4 flex-col pt-10 w-[40rem] rounded-2xl relative justify-end h-[45rem] lg:mt-5 ">
+        <div className="flex justify-center border-4 rounded-3xl h-[20.7rem] w-[31rem] m-auto overflow-hidden bg-white relative">
+          {power === Power.ON ? (
+            <PokemonFavorite
+              key={favoriteUpdated.toString()}
+              onRemovePokemon={handleRemovePokemon}
+            ></PokemonFavorite>
+          ) : (
+            <div className="h-[20.7rem] w-[30.5rem] bg-gray-800"></div>
+          )}{" "}
+          <div
+            className={`h-[20.7rem] w-[30.5rem] bg-orange-700 absolute transition -bottom-84 duration-1000 ease-in-out border-2 ${
+              power === Power.ON ? "" : "-translate-y-84"
+            }`}
+          ></div>
         </div>
-        <div className="absolute bg-white w-full h-36 bottom-0 z-10 "></div>
-        <div className="absolute bg-white w-full h-56 bottom-10 border-4  rounded-full"></div>
+        <div className="absolute bg-white w-full h-36 bottom-0 z-30 "></div>
+        <div className="absolute bg-white w-full h-56 bottom-2 z-20 border-4  rounded-full"></div>
       </div>
     </div>
   );
