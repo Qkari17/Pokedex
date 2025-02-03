@@ -27,7 +27,7 @@ export const PokemonDetailsPage = () => {
   return (
     <>
       <>
-        <div className="flex flex-col items-center">
+        <div className="flex flex-col items-center gap-2">
           <h1 className="text-2xl font-bold">
             {capitalizeFirstLetter(pokemon.name)} (#{pokemon.id})
           </h1>
@@ -45,7 +45,7 @@ export const PokemonDetailsPage = () => {
               );
             })}
           </div>{" "}
-          <h2>Base Stats</h2>
+          <h2 className="text-2xl">Base Stats</h2>
           <div className="grid grid-cols-2 gap-6">
             {pokemon.stats.map((t, index) => (
               <div className="flex flex-col gap-2">

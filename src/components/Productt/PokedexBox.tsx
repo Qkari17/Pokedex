@@ -60,8 +60,8 @@ export const PokedexBox = () => {
   };
 
   return (
-    <div className="flex justify-center ">
-      <div className=" bg-orange-700 flex border-4 flex-col pt-10   w-[40rem] mt-5 rounded-2xl">
+    <div className="flex justify-center flex-col lg:flex-row">
+      <div className=" bg-orange-700 flex border-4 flex-col pt-10 w-[40rem] mt-5 rounded-2xl">
         <div className="flex justify-center border-4 rounded-3xl h-[31rem] w-[31rem] m-auto overflow-y-scroll bg-white">
           <Outlet context={{ toggleSelectedPokemon, selectedPokemon }} />
         </div>
@@ -90,7 +90,7 @@ export const PokedexBox = () => {
           </div>
         </div>
       </div>
-      <div className="bg-orange-700 border-t-4 flex-col pt-10 w-[40rem] mt-5 rounded-2xl relative justify-end">
+      <div className="bg-orange-700 border-t-4 flex-col pt-10 w-[40rem] rounded-2xl relative justify-end h-[45rem] lg:mt-5">
         <div className="flex justify-center border-4 rounded-3xl h-[20.7rem] w-[31rem] m-auto overflow-y-scroll bg-white">
           <PokemonFavorite
             key={favoriteUpdated.toString()}

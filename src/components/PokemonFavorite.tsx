@@ -36,16 +36,16 @@ export const PokemonFavorite = ({ onRemovePokemon }: PokemonFavoriteProps) => {
           <li className="m-auto" key={pokemon.id}>
             <div className="border flex flex-col items-center w-40 h-40 gap-1 p-2 rounded-lg shadow-md bg-slate-200 relative">
               <button
-                className="absolute w-10 h-10 bg-red-500 hover:bg-red-600 top-0 right-0 rounded-bl-3xl"
+                className="absolute w-10 h-10 bg-red-500 hover:bg-red-600 top-0 right-0 rounded-bl-3xl border-2"
                 onClick={() => onRemovePokemon(pokemon.id)}
               >
-                <div className="relative flex justify-center">
+                <div className="relative flex justify-center items-center">
                   <span className="absolute w-8 h-1 bg-white rotate-45 rounded-2xl"></span>
                   <span className="absolute w-8 h-1 bg-white -rotate-45 rounded-2xl"></span>
                 </div>
               </button>
               <Link to={`/${pokemon.id}`}>
-                <button className="absolute w-10 h-10 bg-blue-500 hover:bg-blue-600 top-0 left-0 flex justify-center items-center rounded-br-3xl">
+                <button className="absolute w-10 h-10 bg-blue-500 hover:bg-blue-600 top-0 left-0 flex justify-center items-center rounded-br-3xl border-2">
                   {" "}
                   <img src={Glass} alt="Magnifying glass" className="w-8 "></img>
                 </button>
