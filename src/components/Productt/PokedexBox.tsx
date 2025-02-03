@@ -1,11 +1,15 @@
 import { useState } from "react";
 import { Outlet, useNavigate } from "react-router";
 import { PokemonFavorite } from "../PokemonFavorite";
+import { Power, usePowerContext } from "../Power/PowerContext";
+import { PowerButton } from "../Power/PowerSet";
 
 export const PokedexBox = () => {
   const [selectedPokemon, setSelectedPokemon] = useState<number | null>(null);
   const [favoriteUpdated, setFavoriteUpdated] = useState(false);
   const navigate = useNavigate();
+  const { power } = usePowerContext();
+
   const toggleSelectedPokemon = (id: number) => {
     setSelectedPokemon((prevSelected) => (prevSelected === id ? null : id));
   };
@@ -21,24 +25,23 @@ export const PokedexBox = () => {
 
   const handleSavePokemonId = () => {
     let pokemonIdToSave: string | null = null;
-  
+
     pokemonIdToSave = selectedPokemon ? selectedPokemon.toString() : null;
-  
+
     if (pokemonIdToSave) {
       const savedIds = JSON.parse(
         localStorage.getItem("savedPokemonIds") || "[]"
       );
-  
-      
+
       if (savedIds.length >= 6) {
         alert("Maximum 6 Pokémon can be add!");
-        return; 
+        return;
       }
-  
+
       if (!savedIds.includes(pokemonIdToSave)) {
         savedIds.unshift(pokemonIdToSave);
         localStorage.setItem("savedPokemonIds", JSON.stringify(savedIds));
-        setFavoriteUpdated((prev) => !prev); 
+        setFavoriteUpdated((prev) => !prev);
       } else {
         alert("Pokemon ID already saved!");
       }
@@ -56,18 +59,25 @@ export const PokedexBox = () => {
     );
 
     localStorage.setItem("savedPokemonIds", JSON.stringify(updatedIds));
-    setFavoriteUpdated((prev) => !prev); // Wymuś renderowanie
+    setFavoriteUpdated((prev) => !prev);
   };
 
   return (
     <div className="flex justify-center flex-col lg:flex-row">
       <div className=" bg-orange-700 flex border-4 flex-col pt-10 w-[40rem] mt-5 rounded-2xl">
-        <div className="flex justify-center border-4 rounded-3xl h-[31rem] w-[31rem] m-auto overflow-y-scroll bg-white">
-          <Outlet context={{ toggleSelectedPokemon, selectedPokemon }} />
+        <div className="flex justify-center border-4 rounded-3xl h-[31rem] w-[31rem] m-auto overflow-y-scroll bg-white relative">
+          {power === Power.ON ? (
+            <Outlet context={{ toggleSelectedPokemon, selectedPokemon }} />
+          ) : (
+            <div className="absolute h-[31rem] w-[30.5rem] bg-gray-800"></div>
+          )}
         </div>
 
-        <div className="flex justify-end m-4 ">
-          <div className=" flex h-56">
+        <div className="flex justify-end m-4 relative">
+          <div className="bg-blue-500 absolute -left-4 top-20">
+            <PowerButton></PowerButton>
+          </div>
+          <div className=" flex h-56  ">
             <div className="flex flex-col items-center">
               <p className="text-black text-3xl font-bold ">Check /</p>
               <p className="text-black text-3xl font-bold ">Home</p>
@@ -85,6 +95,7 @@ export const PokedexBox = () => {
               <button
                 onClick={handleSavePokemonId}
                 className="bg-yellow-500 hover:bg-yellow-400 border-4 w-20 h-20 rounded-full"
+                disabled={power !== Power.ON}
               ></button>
             </div>
           </div>

@@ -3,7 +3,7 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 
 import { router } from "./routes";
 import { RouterProvider } from "react-router";
-
+import { PowerContextProvider } from "./components/Power/PowerContext";
 
 // Tworzymy instancję QueryClient
 const queryClient = new QueryClient();
@@ -11,7 +11,10 @@ const queryClient = new QueryClient();
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      <RouterProvider router={router} />
+      {" "}
+      <PowerContextProvider>
+        <RouterProvider router={router} />
+      </PowerContextProvider>
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   );
