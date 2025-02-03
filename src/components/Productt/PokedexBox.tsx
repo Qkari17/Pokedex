@@ -69,12 +69,13 @@ export const PokedexBox = () => {
           {power === Power.ON ? (
             <Outlet context={{ toggleSelectedPokemon, selectedPokemon }} />
           ) : (
-            <div className="h-[31rem] w-[30.5rem] bg-gray-800"></div>
+            <div className="h-[31rem] w-[30.6rem] bg-gray-800"></div>
           )}
         </div>
 
         <div className="flex justify-end m-4 relative">
-          <div className="bg-blue-500 absolute -left-4 top-20">
+          <div className="absolute -left-4 top-5">
+            <p className="text-black text-3xl font-bold mb-2 ml-2">Power</p>
             <PowerButton></PowerButton>
           </div>
           <div className=" flex h-56  ">
@@ -110,10 +111,10 @@ export const PokedexBox = () => {
               onRemovePokemon={handleRemovePokemon}
             ></PokemonFavorite>
           ) : (
-            <div className="h-[20.7rem] w-[30.5rem] bg-gray-800"></div>
+            <div className="h-[20.7rem] w-[30.6rem] bg-gray-800"></div>
           )}{" "}
           <div
-            className={`h-[20.7rem] w-[30.5rem] bg-orange-700 absolute transition -bottom-84 duration-1000 ease-in-out border-2 ${
+            className={`h-[20.7rem] w-[30.6rem] bg-orange-700 absolute transition -bottom-84 duration-1000 ease-in-out border-2 ${
               power === Power.ON ? "" : "-translate-y-84"
             }`}
           ></div>
