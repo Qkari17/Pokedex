@@ -52,7 +52,7 @@ export const PokemonFavorite = ({ onRemovePokemon }: PokemonFavoriteProps) => {
                   <span className="absolute w-8 h-1 bg-white -rotate-45 rounded-2xl dark:bg-slate-300"></span>
                 </div>
               </button>
-              <Link to={`/${pokemon.id}`}>
+              <Link to={`/pokemon/${pokemon.id}`}>
                 <button className="absolute w-10 h-10 bg-blue-500 hover:bg-blue-600 top-0 left-0 flex justify-center items-center rounded-br-3xl border-2 cursor-pointer">
                   {" "}
                   <img src={Glass} alt="Magnifying glass" className="w-8 "></img>
