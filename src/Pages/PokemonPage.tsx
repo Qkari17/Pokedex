@@ -6,6 +6,7 @@ import {
   typeColors,
 } from "../services/function";
 import { useOutletContext } from "react-router";
+import { useEffect, useState } from "react";
 export const PokemonPage = () => {
   const { toggleSelectedPokemon, selectedPokemon } = useOutletContext<{
     toggleSelectedPokemon: (id: number) => void;
@@ -17,24 +18,59 @@ export const PokemonPage = () => {
     queryFn: fetchPokemons,
   });
 
+  const [sortById, setSortById] = useState(true);
+  const [sortedData, setSortedData] = useState<PokemonDetails[]>([]);
+
+  useEffect(() => {
+    if (data) {
+      const sorted = [...data].sort((a, b) =>
+        sortById ? a.id - b.id : b.id - a.id
+      );
+      setSortedData(sorted);
+    }
+  }, [data, sortById]);
+
+  const toggleSortById = () => {
+    setSortById((prev) => !prev);
+  };
+
+
+
   if (isLoading)
-    return (<div className="flex flex-col justify-center items-center gap-4"> <h1 className="font-bold dark:text-slate-200 text-6xl">Loading</h1>
-      <div className="flex flex-col justify-center items-center relative animate-spin ease-in-out duration-1000">
-        <div className="bg-red-600 border-6 w-60 h-30 rounded-t-full"></div>
-        <div className="bg-slate-200 border-6 w-60 h-30 rounded-b-full"></div>
-        <div className="absolute inset-0 flex justify-center items-center">
-          <div className=" transform bg-slate-200 border-6 w-15 h-15 rounded-full flex justify-center items-center">
-            <div className="w-8 h-8 border-4 rounded-full"></div>
+    return (
+      <div className="flex flex-col justify-center items-center gap-4">
+        {" "}
+        <h1 className="font-bold dark:text-slate-200 text-6xl">Loading</h1>
+        <div className="flex flex-col justify-center items-center relative animate-spin ease-in-out duration-1000">
+          <div className="bg-red-600 border-6 w-60 h-30 rounded-t-full"></div>
+          <div className="bg-slate-200 border-6 w-60 h-30 rounded-b-full"></div>
+          <div className="absolute inset-0 flex justify-center items-center">
+            <div className=" transform bg-slate-200 border-6 w-15 h-15 rounded-full flex justify-center items-center">
+              <div className="w-8 h-8 border-4 rounded-full"></div>
+            </div>
           </div>
         </div>
-      </div></div>
+      </div>
     );
-  if (error) return <p className="font-bold dark:text-slate-200 text-4xl">Error: {error.message}</p>;
+  if (error)
+    return (
+      <p className="font-bold dark:text-slate-200 text-4xl">
+        Error: {error.message}
+      </p>
+    );
 
   return (
-    <div>
+    <div className="relative  ">
+      <div className="fixed bg-white dark:bg-stone-700 rounded-tl-2xl rounded-tr-2xl w-[30.5rem] h-7 border-b-2 g"> <button
+          onClick={toggleSortById}
+          className="ml-2 dark:text-slate-200"
+        >
+          Sort by ID {sortById ? "▼" : "▲"}
+        </button></div>
+      <div className="h-7"></div>
+
       <ul className="grid grid-cols-3 gap-1">
-        {data?.map((pokemon) => (
+        {sortedData?.map((pokemon) => (
           <li className="m-auto" key={pokemon.id}>
             <div
               onClick={() => toggleSelectedPokemon(pokemon.id)}
@@ -55,7 +91,7 @@ export const PokemonPage = () => {
                 <strong>{capitalizeFirstLetter(pokemon.name)}</strong>
               </p>
 
-              <div className="flex gap-2">
+              <div className="flex">
                 {pokemon.types.map((t, index) => {
                   const bgColor = typeColors[t.type.name] || "bg-gray-300";
                   return (

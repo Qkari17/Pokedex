@@ -67,7 +67,7 @@ export const PokemonFavorite = ({ onRemovePokemon }: PokemonFavoriteProps) => {
                 {pokemon.id}{" "}
                 <strong>{capitalizeFirstLetter(pokemon.name)}</strong>
               </p>
-              <div className="flex gap-2">
+              <div className="flex">
                 {pokemon.types.map((t, index) => {
                   const bgColor = typeColors[t.type.name] || "bg-gray-300";
                   return (
