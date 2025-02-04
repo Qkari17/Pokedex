@@ -60,14 +60,14 @@ export const PokemonPage = () => {
     );
 
   return (
-    <div className="relative  ">
-      <div className="fixed bg-white dark:bg-stone-700 rounded-tl-2xl rounded-tr-2xl w-[30.5rem] h-7 border-b-2 g"> <button
+    <div >
+      <div className=" bg-white dark:bg-stone-700 rounded-tl-2xl rounded-tr-2xl w-[30.5rem] h-7 border-b-2 "> <button
           onClick={toggleSortById}
-          className="ml-2 dark:text-slate-200"
+          className="ml-2 dark:text-slate-200 cursor-pointer"
         >
           Sort by ID {sortById ? "▼" : "▲"}
         </button></div>
-      <div className="h-7"></div>
+     
 
       <ul className="grid grid-cols-3 gap-1">
         {sortedData?.map((pokemon) => (
@@ -77,7 +77,7 @@ export const PokemonPage = () => {
               className={`border flex flex-col items-center w-40 h-40 gap-1 p-2 rounded-lg shadow-md cursor-pointer dark:bg-stone-500 dark:hover:bg-stone-600
                 ${
                   selectedPokemon === pokemon.id
-                    ? "bg-yellow-300 dark:bg-yellow-800 border-4 "
+                    ? "bg-yellow-300 dark:bg-yellow-800 hover:bg-yellow-300 dark:hover:bg-yellow-800 border-4 "
                     : "bg-slate-200 hover:bg-slate-300"
                 }`}
             >

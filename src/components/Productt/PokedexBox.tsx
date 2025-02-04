@@ -4,6 +4,7 @@ import { PokemonFavorite } from "../PokemonFavorite";
 import { Power, usePowerContext } from "../Power/PowerContext";
 import { PowerButton } from "../Power/PowerSet";
 import { ThemeSwitcher } from "../Theme/ThemeSwitcher";
+import { Speaker } from "../Speaker/Speaker";
 
 export const PokedexBox = () => {
   const [selectedPokemon, setSelectedPokemon] = useState<number | null>(null);
@@ -26,43 +27,39 @@ export const PokedexBox = () => {
 
   const handleSavePokemonId = () => {
     let pokemonIdToSave: string | null = null;
-  
-   
+
     if (selectedPokemon) {
       pokemonIdToSave = selectedPokemon.toString();
     } else {
-      
-      const pathParts = window.location.pathname.split('/');
-      if (pathParts[1] === 'pokemon' && pathParts[2]) {
-        pokemonIdToSave = pathParts[2]; 
+      const pathParts = window.location.pathname.split("/");
+      if (pathParts[1] === "pokemon" && pathParts[2]) {
+        pokemonIdToSave = pathParts[2];
       }
     }
-  
-    
+
     if (!pokemonIdToSave) {
       alert("No Pokemon selected or ID found in the URL!");
       return;
     }
-  
-    
+
     if (isNaN(Number(pokemonIdToSave))) {
       alert("Invalid Pokemon ID!");
       return;
     }
-  
-   
-    const savedIds = JSON.parse(localStorage.getItem("savedPokemonIds") || "[]");
-  
+
+    const savedIds = JSON.parse(
+      localStorage.getItem("savedPokemonIds") || "[]"
+    );
+
     if (savedIds.length >= 6) {
       alert("Maximum 6 Pokémon can be added!");
       return;
     }
-  
+
     if (!savedIds.includes(pokemonIdToSave)) {
       savedIds.unshift(pokemonIdToSave);
       localStorage.setItem("savedPokemonIds", JSON.stringify(savedIds));
       setFavoriteUpdated((prev) => !prev);
-    
     } else {
       alert("Pokemon ID already saved!");
     }
@@ -83,6 +80,18 @@ export const PokedexBox = () => {
   return (
     <div className="flex justify-center flex-col lg:flex-row">
       <div className=" bg-orange-700 flex border-4 flex-col pt-10 w-[40rem] mt-5 rounded-2xl relative">
+        <div className="absolute left-0 top-28 flex flex-col gap-3">
+          <div className={`h-3 w-10  rounded-r-3xl border-2 border-l-0 ${
+                      power === Power.ON
+                        ? "bg-green-500 shadow-lg shadow-green-500/50 "
+                        : "bg-stone-700"
+                    } `}></div>
+          <div className={`h-3 w-10 rounded-r-3xl border-2 border-l-0 ${
+                      power === Power.ON
+                        ? "bg-red-600 shadow-lg shadow-green-500/40 "
+                        : "bg-stone-700"
+                    } `}></div>
+        </div>
         <div className="absolute top-3 right-4">
           <ThemeSwitcher></ThemeSwitcher>
         </div>
@@ -95,6 +104,9 @@ export const PokedexBox = () => {
         </div>
 
         <div className="flex justify-end m-4 relative">
+          <div className=" absolute left-15 bottom-3">
+            <Speaker />
+          </div>
           <div className="absolute -left-4 top-5">
             <p className="text-black text-3xl font-bold mb-2 ml-2">Power</p>
             <PowerButton></PowerButton>

@@ -5,7 +5,7 @@ export const PowerButton = () => {
 
   return (
     <button
-      className="w-20 bg-yellow-500 h-15 rounded-r-full flex justify-end items-center border-4 cursor-pointer"
+      className="w-20 bg-yellow-500 h-15 rounded-r-full flex justify-end items-center border-4 border-l-0 cursor-pointer"
       onClick={toggle}
     >
       <svg

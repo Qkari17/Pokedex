@@ -7,7 +7,7 @@ export interface PokemonDetails {
   id: number;
   name: string;
   types: { type: { name: string } }[];
-  stats: {base_stat:string , stat: {name: string}}[];
+  stats: { base_stat: string; stat: { name: string } }[];
   sprites: { front_default: string };
 }
 export const typeColors: Record<string, string> = {
@@ -25,15 +25,14 @@ export const typeColors: Record<string, string> = {
   rock: "bg-gray-600",
   ghost: "bg-violet-700",
   dragon: "bg-indigo-700",
-  dark: "bg-gray-800",
+  dark: "bg-gray-700",
   steel: "bg-gray-400",
   fairy: "bg-pink-300",
   normal: "bg-gray-300",
 };
 
-
 export const fetchPokemons = async (): Promise<PokemonDetails[]> => {
-  const response = await fetch("https://pokeapi.co/api/v2/pokemon?limit=151");
+  const response = await fetch("https://pokeapi.co/api/v2/pokemon?limit=385");
   if (!response.ok) throw new Error("Błąd w pobieraniu danych");
   const data: { results: PokemonBasic[] } = await response.json();
 
@@ -44,10 +43,9 @@ export const fetchPokemons = async (): Promise<PokemonDetails[]> => {
       return {
         id: pokemonData.id,
         name: pokemonData.name,
-        types: pokemonData.
-        types,
+        types: pokemonData.types,
         sprites: pokemonData.sprites,
-        stats: pokemonData.stats
+        stats: pokemonData.stats,
       };
     })
   );
@@ -60,7 +58,9 @@ export const fetchFavorite = async (): Promise<PokemonDetails[]> => {
 
   const favoritePokemons: PokemonDetails[] = await Promise.all(
     savedIds.map(async (id: number) => {
-      const pokemonResponse = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
+      const pokemonResponse = await fetch(
+        `https://pokeapi.co/api/v2/pokemon/${id}`
+      );
       if (!pokemonResponse.ok) throw new Error("Błąd w pobieraniu danych");
       const pokemonData: PokemonDetails = await pokemonResponse.json();
       return {
@@ -83,7 +83,7 @@ export const capitalizeFirstLetter = (name: string) => {
 export const fetchPokemonById = async (id: string) => {
   const res = await fetch(`https://pokeapi.co/api/v2/pokemon/${id}`);
   if (!res.ok) {
-      throw new Error("Błąd pobierania danych");
+    throw new Error("Błąd pobierania danych");
   }
   return res.json();
 };
