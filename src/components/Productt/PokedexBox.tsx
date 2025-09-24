@@ -78,19 +78,23 @@ export const PokedexBox = () => {
   };
 
   return (
-    <div className="flex justify-center flex-col lg:flex-row">
+    <div className="flex justify-center flex-col lg:flex-row min-w-full">
       <div className=" bg-orange-700 flex border-4 flex-col pt-10 w-[40rem] mt-5 rounded-2xl relative">
         <div className="absolute left-0 top-28 flex flex-col gap-3">
-          <div className={`h-3 w-10  rounded-r-3xl border-2 border-l-0 ${
-                      power === Power.ON
-                        ? "bg-green-500 shadow-lg shadow-green-500/50 "
-                        : "bg-stone-700"
-                    } `}></div>
-          <div className={`h-3 w-10 rounded-r-3xl border-2 border-l-0 ${
-                      power === Power.ON
-                        ? "bg-red-600 shadow-lg shadow-green-500/40 "
-                        : "bg-stone-700"
-                    } `}></div>
+          <div
+            className={`h-3 w-10  rounded-r-3xl border-2 border-l-0 ${
+              power === Power.ON
+                ? "bg-green-500 shadow-lg shadow-green-500/50 "
+                : "bg-stone-700"
+            } `}
+          ></div>
+          <div
+            className={`h-3 w-10 rounded-r-3xl border-2 border-l-0 ${
+              power === Power.ON
+                ? "bg-red-600 shadow-lg shadow-green-500/40 "
+                : "bg-stone-700"
+            } `}
+          ></div>
         </div>
         <div className="absolute top-3 right-4">
           <ThemeSwitcher></ThemeSwitcher>
