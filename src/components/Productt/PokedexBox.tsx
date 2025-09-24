@@ -78,7 +78,7 @@ export const PokedexBox = () => {
   };
 
   return (
-    <div className="flex justify-center flex-col lg:flex-row min-w-full">
+    <div className="flex justify-center flex-col lg:flex-row max-w-full">
       <div className=" bg-orange-700 flex border-4 flex-col pt-10 w-[40rem] mt-5 rounded-2xl relative">
         <div className="absolute left-0 top-28 flex flex-col gap-3">
           <div
